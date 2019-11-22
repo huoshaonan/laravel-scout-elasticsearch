@@ -38,13 +38,13 @@ class ElasticsearchEngine extends Engine
 
         $models->each(function($model) use (&$params)
         {
-            $type = $model->searchableAs();
-            $index = config('scout.elasticsearch.prefix').$type;
+            $index = $model->searchableAs();
+            $index = config('scout.elasticsearch.prefix').$index;
             $params['body'][] = [
                 'update' => [
                     '_id' => $model->getKey(),
                     '_index' => $index,
-                    '_type' => $type,
+                    '_type' => '_doc',
                 ]
             ];
             $doc = collect($model->toSearchableArray())->except(['created_at', 'updated_at', 'deleted_at']);
@@ -69,13 +69,13 @@ class ElasticsearchEngine extends Engine
 
         $models->each(function($model) use (&$params)
         {
-            $type = $model->searchableAs();
-            $index = config('scout.elasticsearch.prefix').$type;
+            $index = $model->searchableAs();
+            $index = config('scout.elasticsearch.prefix').$index;
             $params['body'][] = [
                 'delete' => [
                     '_id' => $model->getKey(),
                     '_index' => $index,
-                    '_type' => $type,
+                    '_type' => '_doc',
                 ]
             ];
         });
@@ -127,13 +127,13 @@ class ElasticsearchEngine extends Engine
      */
     protected function performSearch(Builder $builder, array $options = [])
     {
-        $type = $builder->model->searchableAs();
+        $index = $builder->model->searchableAs();
         $filter = config('scout.elasticsearch.filter');
         $query = str_replace($filter, '', $builder->query);
-        $index = config('scout.elasticsearch.prefix').$type;
+        $index = config('scout.elasticsearch.prefix').$index;
         $params = [
             'index' => $index,
-            'type' => $type,
+            'type' => '_doc',
             'body' => [
                 'query' => [
                     'bool' => [
