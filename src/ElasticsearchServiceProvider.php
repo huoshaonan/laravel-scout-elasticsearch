@@ -1,12 +1,12 @@
 <?php
 
-namespace Baijunyao\LaravelScoutElasticsearch;
+namespace Huoshaonan\LaravelScoutElasticsearch;
 
 use Laravel\Scout\EngineManager;
 use Illuminate\Support\ServiceProvider;
-use Baijunyao\LaravelScoutElasticsearch\Engine\ElasticsearchEngine;
-use Baijunyao\LaravelScoutElasticsearch\Console\ImportCommand;
-use Baijunyao\LaravelScoutElasticsearch\Console\FlushCommand;
+use Huoshaonan\LaravelScoutElasticsearch\Engine\ElasticsearchEngine;
+use Huoshaonan\LaravelScoutElasticsearch\Console\ImportCommand;
+use Huoshaonan\LaravelScoutElasticsearch\Console\FlushCommand;
 
 class ElasticsearchServiceProvider extends ServiceProvider
 {

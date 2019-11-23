@@ -1,7 +1,7 @@
 {
     "name": "huoshaonan/laravel-scout-elasticsearch",
     "keywords": ["laravel", "scout", "elasticsearch"],
-    "description": "Elasticsearch Driver for Laravel Scout",
+    "description": "Elasticsearch Driver for Laravel Scout,support es7.x",
     "type": "library",
     "license": "MIT",
     "authors": [
